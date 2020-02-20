@@ -58,12 +58,12 @@ public class PasswordEncoderFactories {
         encoders.put(encodingId, new BCryptPasswordEncoder());
 //        encoders.put("ldap", new org.springframework.security.crypto.password.LdapShaPasswordEncoder());
 //        encoders.put("MD4", new org.springframework.security.crypto.password.Md4PasswordEncoder());
-//        encoders.put("MD5", new org.springframework.security.crypto.password.MessageDigestPasswordEncoder("MD5"));
+        encoders.put("MD5", new cn.com.xuxiaowei.crypto.MessageDigestPasswordEncoder("MD5"));
 //        encoders.put("noop", org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance());
 //        encoders.put("pbkdf2", new Pbkdf2PasswordEncoder());
 //        encoders.put("scrypt", new SCryptPasswordEncoder());
-//        encoders.put("SHA-1", new org.springframework.security.crypto.password.MessageDigestPasswordEncoder("SHA-1"));
-//        encoders.put("SHA-256", new org.springframework.security.crypto.password.MessageDigestPasswordEncoder("SHA-256"));
+        encoders.put("SHA-1", new cn.com.xuxiaowei.crypto.MessageDigestPasswordEncoder("SHA-1"));
+        encoders.put("SHA-256", new cn.com.xuxiaowei.crypto.MessageDigestPasswordEncoder("SHA-256"));
 //        encoders.put("sha256", new org.springframework.security.crypto.password.StandardPasswordEncoder());
 //        encoders.put("argon2", new Argon2PasswordEncoder());
 

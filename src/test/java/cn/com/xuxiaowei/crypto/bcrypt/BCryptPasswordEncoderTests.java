@@ -55,4 +55,22 @@ public class BCryptPasswordEncoderTests {
         System.out.println(matches);
     }
 
+    @Test
+    public void SHA1() {
+        PasswordEncoder passwordEncoder = new MessageDigestPasswordEncoder("SHA-1");
+        String encode = passwordEncoder.encode(rawPassword);
+        System.out.println(encode);
+        boolean matches = passwordEncoder.matches(rawPassword, encode);
+        System.out.println(matches);
+    }
+
+    @Test
+    public void SHA256() {
+        PasswordEncoder passwordEncoder = new MessageDigestPasswordEncoder("SHA-256");
+        String encode = passwordEncoder.encode(rawPassword);
+        System.out.println(encode);
+        boolean matches = passwordEncoder.matches(rawPassword, encode);
+        System.out.println(matches);
+    }
+
 }
