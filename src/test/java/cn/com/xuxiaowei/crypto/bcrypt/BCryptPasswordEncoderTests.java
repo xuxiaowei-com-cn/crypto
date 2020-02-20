@@ -15,6 +15,7 @@
  */
 package cn.com.xuxiaowei.crypto.bcrypt;
 
+import cn.com.xuxiaowei.crypto.MessageDigestPasswordEncoder;
 import cn.com.xuxiaowei.crypto.PasswordEncoder;
 import cn.com.xuxiaowei.crypto.PasswordEncoderFactories;
 import org.junit.Test;
@@ -39,6 +40,15 @@ public class BCryptPasswordEncoderTests {
     @Test
     public void createDelegatingPasswordEncoder() {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        String encode = passwordEncoder.encode(rawPassword);
+        System.out.println(encode);
+        boolean matches = passwordEncoder.matches(rawPassword, encode);
+        System.out.println(matches);
+    }
+
+    @Test
+    public void md5() {
+        PasswordEncoder passwordEncoder = new MessageDigestPasswordEncoder("MD5");
         String encode = passwordEncoder.encode(rawPassword);
         System.out.println(encode);
         boolean matches = passwordEncoder.matches(rawPassword, encode);
