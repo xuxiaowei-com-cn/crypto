@@ -64,7 +64,7 @@ public class PasswordEncoderFactories {
 //        encoders.put("scrypt", new SCryptPasswordEncoder());
         encoders.put("SHA-1", new cn.com.xuxiaowei.crypto.MessageDigestPasswordEncoder("SHA-1"));
         encoders.put("SHA-256", new cn.com.xuxiaowei.crypto.MessageDigestPasswordEncoder("SHA-256"));
-//        encoders.put("sha256", new org.springframework.security.crypto.password.StandardPasswordEncoder());
+        encoders.put("sha256", new cn.com.xuxiaowei.crypto.StandardPasswordEncoder());
 //        encoders.put("argon2", new Argon2PasswordEncoder());
 
         return new DelegatingPasswordEncoder(encodingId, encoders);
