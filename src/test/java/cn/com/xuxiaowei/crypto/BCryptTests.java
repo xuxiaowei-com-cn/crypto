@@ -18,7 +18,7 @@ public class BCryptTests {
         String password = "xxw";
         System.out.println("原密码：\t" + password);
 
-        String hashed = BCrypt.hashpw(password, org.mindrot.jbcrypt.BCrypt.gensalt());
+        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
         System.out.println("加密后：\t" + hashed);
 
         boolean checkpw = BCrypt.checkpw(password, hashed);
