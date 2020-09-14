@@ -8,6 +8,7 @@ import org.mindrot.jbcrypt.BCrypt;
  * @author xuxiaowei
  * @since 0.0.1
  */
+@SuppressWarnings("AlibabaClassNamingShouldBeCamel")
 public class BCryptPasswordEncoder {
 
     private static final String PREFIX = "{";
