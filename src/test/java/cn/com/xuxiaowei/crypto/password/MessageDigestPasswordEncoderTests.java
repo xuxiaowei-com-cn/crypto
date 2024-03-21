@@ -23,6 +23,16 @@ class MessageDigestPasswordEncoderTests {
 	}
 
 	@Test
+	void noop() {
+		String uuid = UUID.randomUUID().toString();
+		MessageDigestPasswordEncoder passwordEncoder = new MessageDigestPasswordEncoder("");
+		String encode = passwordEncoder.encode(uuid);
+		assertNotNull(encode);
+		boolean matches = passwordEncoder.matches(uuid, encode);
+		assertTrue(matches);
+	}
+
+	@Test
 	void md5() {
 		String uuid = UUID.randomUUID().toString();
 		MessageDigestPasswordEncoder passwordEncoder = new MessageDigestPasswordEncoder("MD5");

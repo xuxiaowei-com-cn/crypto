@@ -6,6 +6,8 @@ package cn.com.xuxiaowei.crypto.password;
  */
 public enum Algorithm {
 
+	NOOP("NOOP"),
+
 	MD5("MD5"),
 
 	SHA_1("SHA-1"),

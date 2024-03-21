@@ -7,6 +7,7 @@ import cn.com.xuxiaowei.crypto.keygen.StringKeyGenerator;
 
 import java.security.MessageDigest;
 import java.util.Base64;
+import java.util.Objects;
 
 /**
  * This {@link PasswordEncoder} is provided for legacy purposes only and is not considered
@@ -83,10 +84,18 @@ public class MessageDigestPasswordEncoder implements PasswordEncoder {
 	 * @param algorithm
 	 */
 	public MessageDigestPasswordEncoder(String algorithm) {
+		if ("".equals(algorithm)) {
+			this.digester = null;
+			return;
+		}
 		this.digester = new Digester(algorithm, 1);
 	}
 
 	public MessageDigestPasswordEncoder(Algorithm algorithm) {
+		if (Algorithm.NOOP.equals(algorithm)) {
+			this.digester = null;
+			return;
+		}
 		this.digester = new Digester(algorithm.getValue(), 1);
 	}
 
@@ -103,6 +112,9 @@ public class MessageDigestPasswordEncoder implements PasswordEncoder {
 	 */
 	@Override
 	public String encode(CharSequence rawPassword) {
+		if (digester == null) {
+			return rawPassword.toString();
+		}
 		String salt = PREFIX + this.saltGenerator.generateKey() + SUFFIX;
 		return digest(salt, rawPassword);
 	}
@@ -130,6 +142,9 @@ public class MessageDigestPasswordEncoder implements PasswordEncoder {
 	 */
 	@Override
 	public boolean matches(CharSequence rawPassword, String encodedPassword) {
+		if (digester == null) {
+			return Objects.equals(rawPassword, encodedPassword);
+		}
 		String salt = extractSalt(encodedPassword);
 		String rawPasswordEncoded = digest(salt, rawPassword);
 		return PasswordEncoderUtils.equals(encodedPassword.toString(), rawPasswordEncoded);
