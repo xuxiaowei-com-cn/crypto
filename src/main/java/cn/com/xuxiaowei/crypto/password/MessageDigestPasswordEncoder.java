@@ -77,6 +77,8 @@ public class MessageDigestPasswordEncoder implements PasswordEncoder {
 
 	private Digester digester;
 
+	private boolean enableSalt = true;
+
 	/**
 	 * The digest algorithm to use Supports the named
 	 * <a href="https://java.sun.com/j2se/1.4.2/docs/guide/security/CryptoSpec.html#AppA">
@@ -115,7 +117,13 @@ public class MessageDigestPasswordEncoder implements PasswordEncoder {
 		if (digester == null) {
 			return rawPassword.toString();
 		}
-		String salt = PREFIX + this.saltGenerator.generateKey() + SUFFIX;
+		String salt;
+		if (enableSalt) {
+			salt = PREFIX + this.saltGenerator.generateKey() + SUFFIX;
+		}
+		else {
+			salt = "";
+		}
 		return digest(salt, rawPassword);
 	}
 
@@ -172,6 +180,14 @@ public class MessageDigestPasswordEncoder implements PasswordEncoder {
 			return "";
 		}
 		return prefixEncodedPassword.substring(start, end + 1);
+	}
+
+	public boolean isEnableSalt() {
+		return enableSalt;
+	}
+
+	public void setEnableSalt(boolean enableSalt) {
+		this.enableSalt = enableSalt;
 	}
 
 }
