@@ -52,7 +52,6 @@ class MessageDigestPasswordEncoderTests {
 		assertTrue(matches);
 	}
 
-
 	@Test
 	void sha384() {
 		String uuid = UUID.randomUUID().toString();
@@ -63,7 +62,6 @@ class MessageDigestPasswordEncoderTests {
 		assertTrue(matches);
 	}
 
-
 	@Test
 	void sha512() {
 		String uuid = UUID.randomUUID().toString();
@@ -73,4 +71,5 @@ class MessageDigestPasswordEncoderTests {
 		boolean matches = passwordEncoder.matches(uuid, encode);
 		assertTrue(matches);
 	}
+
 }
